@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_keirw")
-speed = 5
+speed = 7
+damage = 5
 metadata/_custom_type_script = "uid://dtrmud2gunun4"

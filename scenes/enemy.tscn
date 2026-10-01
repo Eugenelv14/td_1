@@ -1,19 +1,66 @@
 [gd_scene format=3 uid="uid://p8q0rt3sibh8"]
 
-[ext_resource type="Texture2D" uid="uid://cotf7n01ytoji" path="res://icon.svg" id="1_7p1mj"]
+[ext_resource type="Texture2D" uid="uid://8bkglsq4yhyr" path="res://assets/sprites/slime_green.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://ciqaud71p2bsn" path="res://scripts/enemy.gd" id="1_md0e3"]
-[ext_resource type="Resource" uid="uid://q18rqy2u5xuh" path="res://data/enemy_type1.tres" id="2_4ra3w"]
+[ext_resource type="Resource" uid="uid://q18rqy2u5xuh" path="res://data/enemy_small.tres" id="2_4ra3w"]
+[ext_resource type="PackedScene" uid="uid://cqq26p22h2rkj" path="res://scenes/Health_Component.tscn" id="3_c4w8v"]
+[ext_resource type="PackedScene" uid="uid://bcbcpr66vh2ct" path="res://scenes/movement_component.tscn" id="4_xwavj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hnxm"]
-size = Vector2(118, 120)
+[sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(0, 24, 24, 24)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1153327836]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
+atlas = ExtResource("1_7p1mj")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_toqdm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md0e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ra3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uy6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4w8v")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toqdm"]
+size = Vector2(16, 15)
+
+[node name="Enemy" type="Node2D" unique_id=1419652265]
 script = ExtResource("1_md0e3")
 data = ExtResource("2_4ra3w")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=637725116]
-texture = ExtResource("1_7p1mj")
+[node name="Health_Component" parent="." unique_id=1550574983 instance=ExtResource("3_c4w8v")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901821640]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_1hnxm")
+[node name="Movement_Component" parent="." unique_id=1519184196 instance=ExtResource("4_xwavj")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=762467850]
+sprite_frames = SubResource("SpriteFrames_toqdm")
+autoplay = "default"
+frame = 3
+frame_progress = 0.75815105
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1823332899]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=1987916338]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_toqdm")
