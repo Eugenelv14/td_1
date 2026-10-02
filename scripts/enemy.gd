@@ -1,24 +1,31 @@
+class_name Enemy
 extends CharacterBody2D
-@export var data: enemy_stats
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+signal reached_goal(enemy: Enemy)
+signal killed(enemy: Enemy)
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+@export var data: EnemyData
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+@onready var health: HealthComponent = $Health_Component
+@onready var movement: MovementComponent = $Movement_Component
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+#The x coordinate will be set up by the spawner scene
+var goal_x: float = INF 
 
-	move_and_slide()
+func _ready() -> void:
+	assert(data != null, "Enemy needs an EnemyData resource")
+	health.setup(data.max_health)
+	movement.setup(data.speed, goal_x)
+	
+	health.died.connect(_on_died)
+	movement.reached_end.connect(_on_reached_end)
+
+func _on_died() -> void:
+	movement.stop()
+	killed.emit(self)
+	queue_free()
+
+func _on_reached_end() -> void:
+	reached_goal.emit(self)
+	print("The monsters destroyed your tower you lose!")
+	queue_free()
