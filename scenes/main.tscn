@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://pjg2lkhkosd5"]
 
+[ext_resource type="PackedScene" uid="uid://p8q0rt3sibh8" path="res://scenes/enemy.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://yl2ccmrex4cv" path="res://assets/sprites/world_tileset.png" id="4_jyhfs"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_toqdm"]
@@ -171,6 +172,7 @@ sources/0 = SubResource("TileSetAtlasSource_tbgi4")
 position = Vector2(-9, 159)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=448317196]
+position = Vector2(-4, -45)
 shape = SubResource("WorldBoundaryShape2D_toqdm")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=950943787]
@@ -178,3 +180,6 @@ tile_map_data = PackedByteArray("AADt/wYAAAAAAAAAAADu/wYAAAAAAAAAAADv/wYAAAAAAAA
 tile_set = SubResource("TileSet_y4kuj")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=842335687]
+
+[node name="Enemy" parent="." unique_id=1419652265 instance=ExtResource("1_o5qli")]
+position = Vector2(-318, 70)

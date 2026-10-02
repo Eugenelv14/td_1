@@ -1,7 +1,22 @@
 [gd_scene format=3 uid="uid://ce8tls3ubjrmj"]
 
 [ext_resource type="Script" uid="uid://cd1kta3cjydp3" path="res://scripts/spawner.gd" id="1_2vbf6"]
+[ext_resource type="PackedScene" uid="uid://p8q0rt3sibh8" path="res://scenes/enemy.tscn" id="2_4wbs5"]
+[ext_resource type="Script" uid="uid://dtrmud2gunun4" path="res://resources/enemy_data.gd" id="3_30a77"]
+[ext_resource type="Resource" uid="uid://q18rqy2u5xuh" path="res://data/enemy_small.tres" id="4_p5s3f"]
+[ext_resource type="Resource" uid="uid://65e2ha3au72w" path="res://data/enemy_medium.tres" id="5_e3f8v"]
+[ext_resource type="Resource" uid="uid://bwdwdhhujgfu6" path="res://data/enemy_large.tres" id="6_3rx28"]
 
 [node name="Spawner" type="Node2D" unique_id=1774063348]
 script = ExtResource("1_2vbf6")
-enemies = [null]
+enemy_scene = ExtResource("2_4wbs5")
+enemy_pool = Array[ExtResource("3_30a77")]([ExtResource("4_p5s3f"), ExtResource("5_e3f8v"), ExtResource("6_3rx28")])
+enemies_added_per_wave = 1
+initial_countdown = 3.0
+spawn_interval = 1.0
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1830324289]
+position = Vector2(-380, -15)
+
+[node name="GoalPoint" type="Marker2D" parent="." unique_id=1922689889]
+position = Vector2(529, -15)

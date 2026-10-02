@@ -1,5 +1,5 @@
-extends Node2D
 class_name Enemy
+extends CharacterBody2D
 
 signal reached_goal(enemy: Enemy)
 signal killed(enemy: Enemy)

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c0qiuogoc8cnn"]
+
+[ext_resource type="Script" uid="uid://cj0fmimgrxth4" path="res://scripts/test_scene.gd" id="1_j8ivh"]
+[ext_resource type="PackedScene" uid="uid://ce8tls3ubjrmj" path="res://scenes/spawner.tscn" id="2_j8ivh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_toqdm"]
+distance = -26.0
+
+[node name="TestScene" type="Node2D" unique_id=1920452250]
+script = ExtResource("1_j8ivh")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1875463426]
+scale = Vector2(1.0089525, 1.0205318)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=16154629]
+position = Vector2(0, -25.476913)
+shape = SubResource("WorldBoundaryShape2D_toqdm")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=708576168]
+
+[node name="Enemy_Container" type="Node2D" parent="." unique_id=590531923]
+
+[node name="Spawner" parent="Enemy_Container" unique_id=1774063348 node_paths=PackedStringArray("enemy_container") instance=ExtResource("2_j8ivh")]
+enemy_container = NodePath("..")
