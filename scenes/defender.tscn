@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://ciebubu60vbrb"]
+
+[ext_resource type="Script" uid="uid://detrjd5v8y4e5" path="res://scripts/defenderArrow.gd" id="1_2g18h"]
+[ext_resource type="Texture2D" uid="uid://x7x4yn5s4511" path="res://assets/sprites/archer sprite-Sheet.png" id="1_5groj"]
+[ext_resource type="PackedScene" uid="uid://p7n4tp7cwrnx" path="res://scenes/arrow.tscn" id="2_j8307"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g18h"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8307"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15t5d"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8717"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu2cx"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wel6m"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvw38"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b3pd"]
+atlas = ExtResource("1_5groj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utxm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g18h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8307")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15t5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8717")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu2cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wel6m")
+}],
+"loop": 1,
+"name": &"Fighting",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvw38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b3pd")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Defender" type="StaticBody2D" unique_id=55242616]
+script = ExtResource("1_2g18h")
+arrow_scene = ExtResource("2_j8307")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1638323101]
+scale = Vector2(5.4687495, 4.4296875)
+sprite_frames = SubResource("SpriteFrames_utxm4")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.2765504
+
+[node name="ArrowSpawn" type="Marker2D" parent="." unique_id=908321376]
+position = Vector2(-30, 13)
+gizmo_extents = 32.0
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1028973484]
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
