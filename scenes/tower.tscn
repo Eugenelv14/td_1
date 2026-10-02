@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ccw5jb5xn6vuw"]
+
+[ext_resource type="Texture2D" uid="uid://cn432mmd38l6s" path="res://assets/towers_large.png" id="1_2x682"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxm4"]
+size = Vector2(56, 72)
+
+[node name="Tower" type="StaticBody2D" unique_id=1058041035]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1580033409]
+position = Vector2(-1, 7)
+shape = SubResource("RectangleShape2D_utxm4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1202018663]
+position = Vector2(-1.1920929e-07, 0)
+scale = Vector2(0.26962024, 0.2841191)
+texture = ExtResource("1_2x682")
+region_enabled = true
+region_rect = Rect2(0, 0, 395, 403)
