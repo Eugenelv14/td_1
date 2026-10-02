@@ -21,6 +21,7 @@ func _ready() -> void:
 	movement.reached_end.connect(_on_reached_end)
 
 func _on_died() -> void:
+	"Enemy was killed"
 	movement.stop()
 	killed.emit(self)
 	queue_free()

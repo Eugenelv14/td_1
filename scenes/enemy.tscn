@@ -59,5 +59,3 @@ shape = SubResource("RectangleShape2D_1hnxm")
 [node name="Health_Component" parent="." unique_id=1550574983 instance=ExtResource("3_5uy6h")]
 
 [node name="Movement_Component" parent="." unique_id=1519184196 instance=ExtResource("4_c4w8v")]
-
-[node name="Area2D" type="Area2D" parent="." unique_id=302219401]

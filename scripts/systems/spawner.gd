@@ -1,9 +1,7 @@
 class_name Spawner
 extends Node2D
 
-signal wave_started(wave_number: int, total_waves:int)
 signal wave_cleared(wave_number:int)
-signal all_waves_completed
 signal enemy_removed
 
 #Loads Data and enemy
@@ -49,12 +47,12 @@ func start() -> void:
 	#Starts loop for spawning waves
 	for wave in range(1, total_waves + 1):
 		current_wave = wave
+		print("Current Wave:", current_wave)
 		await _run_wave()
-	
 	
 func _run_wave() -> void:
 	var enemy_count := enemie_per_wave + enemies_added_per_wave * (current_wave - 1)
-	wave_started.emit(current_wave, total_waves)
+	print("Enemy count", enemy_count)
 	
 	for i in enemy_count:
 		_spawn_enemy()
@@ -64,7 +62,8 @@ func _run_wave() -> void:
 	#By this point everything should be spawned, now it waits till the last enemy is dead
 	while alive_enemies > 0:
 		await enemy_removed 
-		
+	
+	print("Wave Cleared")
 	wave_cleared.emit(current_wave)
 	
 	
@@ -77,11 +76,14 @@ func _spawn_enemy() -> void:
 	alive_enemies += 1
 	
 	var parent: Node = enemy_container if enemy_container else self
+	_add_enemy_deferred.call_deferred(parent,enemy)
+	
+func _add_enemy_deferred(parent: Node, enemy: Enemy) -> void:
 	parent.add_child(enemy)
 	enemy.global_position = spawn_point.global_position
-
-func _on_enemy_gone() -> void:
+func _on_enemy_gone(_enemy: Enemy) -> void:
 	alive_enemies -= 1
+	print("Enemies Remaining:", alive_enemies)
 	enemy_removed.emit()
 
 func _wait(seconds: float) -> void:

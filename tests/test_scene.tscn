@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://cj0fmimgrxth4" path="res://tests/test_scene.gd" id="1_34p8v"]
 [ext_resource type="PackedScene" uid="uid://ce8tls3ubjrmj" path="res://scenes/systems/spawner.tscn" id="2_kutgf"]
 [ext_resource type="PackedScene" uid="uid://ccw5jb5xn6vuw" path="res://scenes/tower.tscn" id="3_oikp8"]
+[ext_resource type="PackedScene" uid="uid://crnvn4u7nrplq" path="res://scenes/systems/killzone.tscn" id="4_kutgf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_toqdm"]
 distance = -26.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1hnxm"]
 
 [node name="TestScene" type="Node2D" unique_id=1920452250]
 script = ExtResource("1_34p8v")
@@ -26,3 +29,10 @@ enemy_container = NodePath("..")
 
 [node name="Tower" parent="." unique_id=1058041035 instance=ExtResource("3_oikp8")]
 position = Vector2(435, -36)
+
+[node name="Killzone" parent="." unique_id=1634129729 instance=ExtResource("4_kutgf")]
+position = Vector2(49, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=133181029]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_1hnxm")
