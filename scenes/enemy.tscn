@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://p8q0rt3sibh8"]
+
+[ext_resource type="Script" uid="uid://ciqaud71p2bsn" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://8bkglsq4yhyr" path="res://assets/sprites/slime_green.png" id="2_4ra3w"]
+[ext_resource type="PackedScene" uid="uid://cqq26p22h2rkj" path="res://scenes/systems/Health_Component.tscn" id="3_5uy6h"]
+[ext_resource type="PackedScene" uid="uid://bcbcpr66vh2ct" path="res://scenes/systems/movement_component.tscn" id="4_c4w8v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
+atlas = ExtResource("2_4ra3w")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
+atlas = ExtResource("2_4ra3w")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
+atlas = ExtResource("2_4ra3w")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
+atlas = ExtResource("2_4ra3w")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_toqdm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uy6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4w8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwavj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hnxm"]
+size = Vector2(14, 12)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1348315769]
+collision_layer = 2
+script = ExtResource("1_md0e3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2052381018]
+sprite_frames = SubResource("SpriteFrames_toqdm")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1475622104]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_1hnxm")
+
+[node name="Health_Component" parent="." unique_id=1550574983 instance=ExtResource("3_5uy6h")]
+
+[node name="Movement_Component" parent="." unique_id=1519184196 instance=ExtResource("4_c4w8v")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=302219401]

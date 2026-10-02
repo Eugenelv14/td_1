@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ce8tls3ubjrmj"]
 
-[ext_resource type="Script" uid="uid://cd1kta3cjydp3" path="res://scripts/spawner.gd" id="1_2vbf6"]
+[ext_resource type="Script" uid="uid://cd1kta3cjydp3" path="res://scripts/systems/spawner.gd" id="1_2vbf6"]
 [ext_resource type="PackedScene" uid="uid://p8q0rt3sibh8" path="res://scenes/enemy.tscn" id="2_4wbs5"]
 [ext_resource type="Script" uid="uid://dtrmud2gunun4" path="res://resources/enemy_data.gd" id="3_30a77"]
 [ext_resource type="Resource" uid="uid://q18rqy2u5xuh" path="res://data/enemy_small.tres" id="4_p5s3f"]
