@@ -73,7 +73,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Defender" type="StaticBody2D" unique_id=55242616]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utxm4"]
+size = Vector2(484, 243)
+
+[node name="Defender" type="Node2D" unique_id=1023525119]
 script = ExtResource("1_2g18h")
 arrow_scene = ExtResource("2_j8307")
 
@@ -82,13 +85,22 @@ scale = Vector2(5.4687495, 4.4296875)
 sprite_frames = SubResource("SpriteFrames_utxm4")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.2765504
+frame_progress = 0.27028036
 
 [node name="ArrowSpawn" type="Marker2D" parent="." unique_id=908321376]
-position = Vector2(-30, 13)
-gizmo_extents = 32.0
+position = Vector2(-27, 13)
+gizmo_extents = 15.0
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1028973484]
+wait_time = 1.5
 autostart = true
 
+[node name="AttackRange" type="Area2D" parent="." unique_id=84405794]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=2036330255]
+position = Vector2(-269, 13)
+shape = SubResource("RectangleShape2D_utxm4")
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
