@@ -44,8 +44,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hnxm"]
 size = Vector2(14, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toqdm"]
+size = Vector2(19, 17)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1348315769]
-collision_layer = 2
+collision_layer = 10
+collision_mask = 5
 script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2052381018]
@@ -59,3 +63,13 @@ shape = SubResource("RectangleShape2D_1hnxm")
 [node name="Health_Component" parent="." unique_id=1550574983 instance=ExtResource("3_5uy6h")]
 
 [node name="Movement_Component" parent="." unique_id=1519184196 instance=ExtResource("4_c4w8v")]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2091601474]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1438659997]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_toqdm")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -16,16 +16,16 @@
 		#queue_free()
 extends Area2D
 
+@export var arrow_damage: int = 7
 var target: Node2D
 var speed: float = 300.0
 
 
 func _process(delta: float) -> void:
-	if target:
-		var direction = global_position.direction_to(target.global_position)
-		global_position += direction * speed * delta
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body == target:
+	if not is_instance_valid(target):
 		queue_free()
+		return
+
+	var direction = global_position.direction_to(target.global_position)
+	rotation = direction.angle()
+	global_position += direction * speed * delta

@@ -96,6 +96,8 @@ wait_time = 1.5
 autostart = true
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=84405794]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=2036330255]
 position = Vector2(-269, 13)

@@ -30,3 +30,8 @@ func _on_reached_end() -> void:
 	reached_goal.emit(self)
 	print("The monsters destroyed your tower you lose!")
 	queue_free()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	health.take_damage(area.arrow_damage)
+	area.queue_free()

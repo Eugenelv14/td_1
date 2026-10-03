@@ -6,4 +6,5 @@
 script = ExtResource("1_obbqc")
 speed = 2000
 damage = 5
+attack_interval = 3.0
 metadata/_custom_type_script = "uid://dtrmud2gunun4"

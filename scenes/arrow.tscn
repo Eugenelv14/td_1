@@ -6,6 +6,8 @@
 size = Vector2(47, 4)
 
 [node name="Arrow" type="Area2D" unique_id=1091670717]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_umosx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=614048565]
@@ -13,8 +15,8 @@ position = Vector2(-9.5, -1)
 shape = SubResource("RectangleShape2D_y4kuj")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1042636315]
-position = Vector2(-4.7683716e-07, -1.1920929e-07)
-rotation = -1.5707964
+position = Vector2(-17.999998, -1.9999999)
+rotation = 1.5707964
 scale = Vector2(0.10960655, 0.1300983)
 color = Color(0.9549566, 0, 0.070757814, 1)
 polygon = PackedVector2Array(-8, -175.99997, -7.999878, -66.345215, -8, 119.99999, 24, 119.999985, 24, 63.168213, 24, -115.56348, 24.000015, -175.99998, 47.99997, -176, 8, -255.99998, -32, -175.99997)

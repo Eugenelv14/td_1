@@ -481,9 +481,11 @@ position = Vector2(325, -18)
 [node name="Spawner" parent="." unique_id=1774063348 instance=ExtResource("6_tefeu")]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(105, 49)
+position = Vector2(86, 94)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=979302679]
+position = Vector2(194, -10)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1911354885]
 light_mask = 2

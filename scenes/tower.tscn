@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://ccw5jb5xn6vuw"]
 
 [ext_resource type="Texture2D" uid="uid://cn432mmd38l6s" path="res://assets/towers_large.png" id="1_2x682"]
+[ext_resource type="Script" uid="uid://dr0j8bq31aumj" path="res://scripts/tower.gd" id="1_ktxwe"]
+[ext_resource type="PackedScene" uid="uid://cqq26p22h2rkj" path="res://scenes/systems/Health_Component.tscn" id="2_qrbg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utxm4"]
 size = Vector2(56, 72)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toqdm"]
+size = Vector2(78, 77)
+
 [node name="Tower" type="StaticBody2D" unique_id=1058041035]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_ktxwe")
+
+[node name="Health_Component" parent="." unique_id=1550574983 instance=ExtResource("2_qrbg1")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1580033409]
 position = Vector2(-1, 7)
@@ -17,3 +27,15 @@ scale = Vector2(0.26962024, 0.2841191)
 texture = ExtResource("1_2x682")
 region_enabled = true
 region_rect = Rect2(0, 0, 395, 403)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=747525407]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2050533349]
+position = Vector2(-12, 9.5)
+shape = SubResource("RectangleShape2D_toqdm")
+
+[connection signal="died" from="Health_Component" to="." method="_on_died"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
